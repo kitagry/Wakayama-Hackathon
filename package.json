@@ -7,6 +7,9 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "nuxt": "^1.4.2"
+    "@nuxtjs/vuetify": "^0.4.2",
+    "nuxt": "^1.4.2",
+    "pug": "^2.0.3",
+    "pug-plain-loader": "^1.0.0"
   }
 }
