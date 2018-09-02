@@ -790,7 +790,7 @@
         <div>
           <p>あなたの和歌山人度は</p>
           <p class="display-2"><b class="display-4">{{ $store.state.wpt }}</b>wpt</p>
-          <p class="display-1" style="color: #ffd700;">ゴールド和歌山人</p>
+          <p class="display-1" :style="{color: rank[ranking].color}">{{ rank[ranking].rank }}</p>
         </div>
         <v-spacer></v-spacer>
       </v-footer>
@@ -802,8 +802,32 @@ export default {
   data: () => {
     return {
       title: "和歌山県",
+      rank: [
+        { rank: "宇宙人", color: "#c0c0c0" },
+        { rank: "地球人", color: "#4169e1" },
+        { rank: "日本人", color: "#deb887" },
+        { rank: "関西人", color: "#cd853f" },
+        { rank: "和歌山人!!!!", color: "#ff8c00" },
+      ]
     }
   },
+
+  computed: {
+    ranking () {
+      var wpt =  this.$store.state.wpt;
+      if ( wpt == 0 ) {
+        return 0;
+      } else if ( wpt < 100 ) {
+        return 1;
+      } else if ( wpt < 200 ) {
+        return 2;
+      } else if ( wpt < 300 ) {
+        return 3;
+      } else {
+        return 4;
+      }
+    }
+  }
 }
 </script>
 
