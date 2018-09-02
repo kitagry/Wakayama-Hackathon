@@ -1,6 +1,6 @@
 <template lang="pug">
   v-container(grid-list-md, text-xs-center)
-    v-layout(row, wrap, justify-center)
+    v-layout(row, wrap, justify-center v-if="count < 10")
       v-flex(xs12)
         v-card
           v-card-title.pl-5 問題 {{ count+1 }}
@@ -8,19 +8,23 @@
       v-flex.py-0.ma-0(v-for="i in 4", :key="`option${i-1}`", xs6)
         v-card(:class="[ isCorrect(i-1) ? correctClass : (clicked[i-1] ? errorClass : defaultClass) ]")
           v-btn.pb-5.pt-4(block, flat, @click="judge(i-1)") {{ quizs[quizid].answer[i-1] }}
+      v-flex(xs4)
+        v-card.pa-0
+          v-btn(block, flat, to="/") クイズをやめる
       v-dialog(v-model="dialog", width="800")
         v-flex(xs12)
           v-card.pa-0
             v-card-title.pl-4 正解は、 {{ quizs[quizid].answer[quizs[quizid].correct] }}
             v-card-text.py-5 {{ tips[quizid] }}
-      v-dialog(v-model="result", fullscreen)
+    v-content(v-else, fullscreen)
+      v-layout(row, wrap, justify-center)
         v-flex(xs12)
-          v-card.ma-0
+          v-card.ma-0(flat)
             v-card-title.pl-4 １０問中、 {{ rate }} 正解!!
             v-card-text.py-5 あなたの和歌山度が、{{ wpt }}になりました。
-      v-flex(xs4)
-        v-card.pa-0
-          v-btn(block, flat, to="/") クイズをやめる
+        v-flex(xs4)
+          v-card.pa-0
+            v-btn(block, to="/") ホームに戻る
 </template>
 
 <script>
@@ -30,7 +34,6 @@ export default {
       count: 0,
       rate: 0,
       dialog: false,
-      result: false,
       clicked: [false, false, false, false, false],
       defaultClass: '',
       correctClass: 'light-green accent-3',
@@ -93,9 +96,6 @@ export default {
         } 
         this.count++;
         this.quizid++;
-        if (this.count >= 10) {
-          this.result = true;
-        }
       }
     }
   }
