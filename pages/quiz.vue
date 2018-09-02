@@ -4,10 +4,10 @@
       v-flex(xs12)
         v-card
           v-card-title.pl-5 問題 {{ count+1 }}
-          v-card-text.pa-5 {{ randomedQuizs[quizid].question }}
+          v-card-text.pa-5.display-3 {{ randomedQuizs[quizid].question }}
       v-flex.py-0.ma-0(v-for="i in 4", :key="`option${i-1}`", xs6)
         v-card(:class="[ isCorrect(i-1) ? correctClass : (clicked[i-1] ? errorClass : defaultClass) ]")
-          v-btn.pb-5.pt-4(block, flat, @click="judge(i-1)") {{ randomedQuizs[quizid].answer[i-1] }}
+          v-btn.pb-5.pt-4.display-2(block, flat, @click="judge(i-1)") {{ randomedQuizs[quizid].answer[i-1] }}
       v-flex(xs4)
         v-card.pa-0
           v-btn(block, flat, to="/") クイズをやめる
@@ -20,8 +20,14 @@
       v-layout(row, wrap, justify-center)
         v-flex(xs12)
           v-card.ma-0(flat)
-            v-card-title.pl-4 5問中、 {{ rate }} 正解!!
-            v-card-text.py-5 あなたの和歌山度が、{{ wpt }}になりました。
+            v-card-title.pl-4.display-1
+              h1.display-3 5
+              | 問中、 
+              h1.display-3 {{ rate }}
+              | 問正解!!
+            v-card-text.py-5.display-3 あなたの和歌山度が、
+              h1.display-4 {{ wpt }}
+              | になりました。
         v-flex(xs4)
           v-card.pa-0
             v-btn(block, to="/") ホームに戻る
