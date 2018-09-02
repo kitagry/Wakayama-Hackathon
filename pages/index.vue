@@ -789,7 +789,7 @@
         <v-spacer></v-spacer>
         <div>
           <p>あなたの和歌山人度は</p>
-          <p class="display-2"><b class="display-4">100</b>wpt</p>
+          <p class="display-2"><b class="display-4">{{ $store.state.wpt }}</b>wpt</p>
           <p class="display-1" style="color: #ffd700;">ゴールド和歌山人</p>
         </div>
         <v-spacer></v-spacer>
