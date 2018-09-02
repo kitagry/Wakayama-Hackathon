@@ -29,7 +29,6 @@ export default {
     return {
       count: 0,
       rate: 0,
-      wpt: 0,
       dialog: false,
       result: false,
       clicked: [false, false, false, false, false],
@@ -75,12 +74,14 @@ export default {
         this.clicked[4] = true;
         if(this.clicked[this.quizs[this.quizid].correct] == true){
            this.rate++;
-           this.wpt = this.wpt + 10;
+           this.$store.commit('increment');
         }
         this.dialog = true;
-        
-        console.log(this.wpt);
     }
+  },
+
+  computed: {
+    wpt () { return this.$store.state.wpt }
   },
 
   watch: {

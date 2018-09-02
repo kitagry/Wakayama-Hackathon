@@ -4,6 +4,6 @@ export const state = () => ({
 
 export const mutations = {
   increment (state) {
-    state.wpt++
+    state.wpt += 10;
   }
 }
